@@ -1,0 +1,5 @@
+# Les fichiers temporaires
+*~
+
+# Les fichiers de compilation
+*.o
