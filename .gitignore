@@ -3,3 +3,5 @@
 
 # Les fichiers de compilation
 *.o
+NiHandTracker/x64-Debug/
+NiHandTracker/x64-Release/
