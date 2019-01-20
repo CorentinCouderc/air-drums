@@ -26,8 +26,10 @@
 #include <XnCyclicStackT.h>
 #include <XnHashT.h>
 
+//#include "NiSimpleViewer.h"
+
 // Hand position history length (positions)
-#define MAX_HAND_TRAIL_LENGTH	10
+#define MAX_HAND_TRAIL_LENGTH	2
 
 typedef XnCyclicStackT<XnPoint3D, MAX_HAND_TRAIL_LENGTH> Trail;
 typedef XnHashT<XnUserID, Trail> TrailHistory;
@@ -40,6 +42,8 @@ public:
 
 	XnStatus Init();
 	XnStatus Run();
+
+	static int nbr_of_hands;
 
 	const TrailHistory&	GetHistory()	const	{return m_History;}
 

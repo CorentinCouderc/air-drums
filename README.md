@@ -6,6 +6,20 @@ Auteurs :
   MIOR Edouard
   LEPLOMB Théo
 
+Ce projet marche avec Kinect v1 et OpenNI + Sensor.
+
+Compiler : 
+
+cd air-drums
+
+sh compilation.sh
+
+Executer :
+
+cd air-drums
+
+sh exe.sh
+
 Ajouter sur github :
 
 - git status

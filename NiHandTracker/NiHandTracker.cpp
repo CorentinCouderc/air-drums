@@ -23,6 +23,7 @@
 // Includes
 //---------------------------------------------------------------------------
 #include "NiHandTracker.h"
+
 #include <cassert>
 
 
@@ -54,6 +55,8 @@ static const char* const	cGestures[] =
 	cWaveStr
 };
 
+int HandTracker::nbr_of_hands;
+
 //---------------------------------------------------------------------------
 // Statics
 //---------------------------------------------------------------------------
@@ -69,7 +72,7 @@ void XN_CALLBACK_TYPE HandTracker::Gesture_Recognized(	xn::GestureGenerator&	/*g
 														const XnPoint3D*		pEndPosition, 
 														void*					pCookie)
 {
-	printf("Gesture recognized: %s\n", strGesture);
+	// printf("Gesture recognized: %s\n", strGesture);
 
 	HandTracker*	pThis = static_cast<HandTracker*>(pCookie);
 	if(sm_Instances.Find(pThis) == sm_Instances.End())
@@ -87,6 +90,7 @@ void XN_CALLBACK_TYPE HandTracker::Hand_Create(	xn::HandsGenerator& /*generator*
 												XnFloat				/*fTime*/, 
 												void*				pCookie)
 {
+	nbr_of_hands+=1;
 	printf("New Hand: %d @ (%f,%f,%f)\n", nId, pPosition->X, pPosition->Y, pPosition->Z);
 
 	HandTracker*	pThis = static_cast<HandTracker*>(pCookie);
@@ -128,6 +132,7 @@ void XN_CALLBACK_TYPE HandTracker::Hand_Destroy(	xn::HandsGenerator& /*generator
 													XnFloat				/*fTime*/, 
 													void*				pCookie)
 {
+	nbr_of_hands-=1;
 	printf("Lost Hand: %d\n", nId);
 
 	HandTracker*	pThis = static_cast<HandTracker*>(pCookie);

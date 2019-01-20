@@ -4,20 +4,17 @@ BIN_DIR = ../Bin
 
 INC_DIRS = \
 	../../Include =/usr/include/ni \
+    ./Libs/fmodstudioapi11010linux/api/lowlevel/inc \
 	./
 
-SRC_FILES = ./*.cpp
+SRC_FILES = \
+	./*.cpp \
+	./lib/*.cpp \
+	./lib/format/*.cpp \
+	./lib/sound/*.cpp 
 
-ifeq ("$(OSTYPE)","Darwin")
-	LDFLAGS += -framework OpenGL -framework GLUT
-else
-	USED_LIBS += glut GL
-endif
-
-USED_LIBS += OpenNI
+USED_LIBS += OpenNI pthread fmod glut GL GLEW GLU dl
 
 EXE_NAME = air-drums
 
-LIB_DIRS += ../../Lib
 include ../Build/Common/CommonCppMakefile
-

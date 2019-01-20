@@ -23,12 +23,16 @@
 #define NI_HAND_VIEWER_H__
 
 #include "NiSimpleViewer.h"
+
 #include "NiHandTracker.h"
 
 class HandViewer: public SimpleViewer
 {
 public:
 	// Singleton
+
+
+
 	static SimpleViewer& CreateInstance(xn::Context& context);
 
 	virtual XnStatus Init(int argc, char **argv);
@@ -36,13 +40,43 @@ public:
 
 protected:
 	HandViewer(xn::Context& context);
+	bool Hand_in_circle(float circle[],float x_hand, float y_hand);
+	bool Hand_calculs( float tab_position_x_y_0[], float area[]);
 
-	virtual void DisplayPostDraw();
+
+	virtual void UpdateHandInfo();
+	
 
 	virtual XnStatus InitOpenGL(int argc, char **argv);
 
 private:
 	HandTracker	m_HandTracker;
+	bool Hand_in_circle1;
+	bool Hand_in_circle2;
+	bool Hand_in_circle3;
+	bool Hand_in_circle4;
+	bool Hand_in_circle5;
+
+
+	int HAND_1_IN; //=1 for hand 1, =2 for hand 2
+	int HAND_2_IN;
+
+	bool etat_avant;
+	int etat_avant_main1;
+	int etat_avant_main2;
+	float tab_position_x_y[20];
+	float tab_position_x_y_main1[20];
+	float tab_position_x_y_main2[20];
+
+	bool main1_speed_ok;
+	bool main2_speed_ok;
+
+	bool circle1_activation;
+	bool circle2_activation;
+	bool circle3_activation;
+	bool circle4_activation;
+
+
 };
 
 #endif //NI_HAND_VIEWER_H__
